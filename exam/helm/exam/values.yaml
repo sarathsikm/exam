@@ -1,0 +1,47 @@
+replicaCount: 1
+app: exam
+namespace: egov
+
+application:
+  config:
+    database_url: jdbc:postgresql://localhost:5432/cr-local?currentSchema=ksmart
+    database_user: postgres
+    profile: dev
+
+imagePullSecrets: [ ]
+nameOverride: ""
+fullnameOverride: ""
+
+
+podAnnotations: { }
+
+secretMap:
+  name: exam
+
+podSecurityContext: { }
+
+securityContext: { }
+
+service:
+  port: 8080
+  targetPort: 8080
+  targetGroupARN: "arn:aws:elasticloadbalancing:ap-south-1:095566081345:targetgroup/ksm-cr-death-services-dev/665a9bf582d00926"
+
+resources:
+  requests:
+    memory: "2000Mi"
+    cpu: "500m"
+  limits:
+    memory: "2000Mi"
+    
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 1
+  targetCPUUtilizationPercentage: 80
+
+nodeSelector: { }
+
+tolerations: [ ]
+
+affinity: { }

@@ -1,0 +1,30 @@
+management:
+  endpoints:
+    web:
+      base-path: /
+
+server:
+  servlet:
+    context-path: /exam-service
+  port: 9112
+
+app:
+  timezone: UTC
+
+spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: ${POSTGRES_URL}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+  liquibase:
+    enabled: 'true'
+    drop-first: 'true'
+    change-log: classpath:/db/changelog/changelog-master.xml
+  jpa:
+    properties:
+      org:
+        hibernate:
+          envers:
+            do_not_audit_optimistic_locking_field: false
+
